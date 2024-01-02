@@ -1,0 +1,48 @@
+import java.util.*;
+import java.io.*;
+import java.lang.Math;
+
+public class Main
+{
+  public static void appleTrees(int N,int M,int K,int[] H)
+  {
+
+    //this is default OUTPUT. You can change it.
+
+    //write your Logic here:
+    for(int i = 0; i < K; i++){
+
+      for(int j = 0; j < N; j++){
+
+        if(H[j] < M){
+          H[j]++;
+        }
+      }
+    }
+
+    for(int each:H){
+      System.out.print(each + " ");
+    }
+    
+  }
+  public static void main (String[]args)
+  {
+    Scanner sc = new Scanner (System.in);
+
+    //INPUT [uncomment & modify if required]
+    int N = sc.nextInt ();
+    int M = sc.nextInt ();
+    int K = sc.nextInt ();
+    
+    int[] H = new int[N];
+    for (int i = 0; i < N; i++)
+    {
+        H[i] = sc.nextInt ();
+    }
+
+    sc.close ();
+
+    //OUTPUT [uncomment & modify if required]
+    appleTrees(N,M,K,H);
+  }
+}

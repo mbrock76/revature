@@ -1,0 +1,52 @@
+using System;
+
+public class Test
+{
+    public static int findPairs(int N,int[] A)
+    {
+        //this is default OUTPUT. You can change it.
+        int result = 0;
+        
+        //write your Logic here:
+        for(int i = 0; i < N; i++){
+            for(int j = i+1; j < N; j++){
+
+                if((A[j] - A[i]) * (i + j) == (j * j) - (i * i)){
+                    result++;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static void Main()
+    {
+        // INPUT [uncomment & modify if required]
+        // 3 2 5 4
+        // 1
+        // 2 5 5
+        // 0
+        // 17 2 2 1 2 1 0 0 2 1 0 2 2 1 1 1 0 1
+        // 4
+        // 29 2 0 2 1 1 2 1 1 2 1 2 2 2 1 2 0 0 1 2 1 0 0 2 0 1 0 2 2 1
+        // 10
+        // 30 2 0 2 2 0 2 0 1 0 0 1 2 2 1 1 2 0 1 1 0 2 2 0 2 1 1 1 2 0 0
+        // 9
+        // 99 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+        // 441
+        
+        int N = Convert.ToInt32(Console.ReadLine());
+        
+        int[] A = new int[N];
+        string[] tokens = Console.ReadLine().Split();
+        int i;
+        for (i = 0; i < N; i++)
+        {
+            A[i] = Convert.ToInt32(tokens[i]);
+        }
+        
+        // OUTPUT [uncomment & modify if required]
+        Console.WriteLine(findPairs(N,A));
+    }
+}

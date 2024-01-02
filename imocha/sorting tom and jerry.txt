@@ -1,0 +1,71 @@
+import java.util.*;
+import java.io.*;
+import java.lang.Math;
+
+public class Main
+{
+  public static void tomAndJerry(int N, int T, int J, int[] A)
+  {
+
+    //this is default OUTPUT. You can change it.
+    int tom = 0;
+    int jerry = 0;
+    ArrayList<Integer> even = new ArrayList<Integer>();
+    ArrayList<Integer> odd = new ArrayList<Integer>();
+
+    //write your Logic here:
+    for(int each: A){
+      if(each % 2 == 0){
+        even.add(each);
+      }else{
+        odd.add(each);
+      }
+    }
+
+    Collections.sort(even);
+    Collections.sort(odd);
+
+    for(Integer each: even){
+      
+      if(each <= T){
+        tom++;
+        T = T - each;
+      }else{
+        break;
+      }
+    }
+
+    for(Integer each: odd){
+      
+      if(each <= J){
+        jerry++;
+        J = J - each;
+      }else{
+        break;
+      }
+    }
+
+
+      System.out.println(tom + " " + jerry);
+  }
+  public static void main (String[]args)
+  {
+    Scanner sc = new Scanner (System.in);
+
+    //INPUT [uncomment & modify if required]
+    int N = sc.nextInt ();
+    int T = sc.nextInt ();
+    int J = sc.nextInt ();
+
+    int[] A = new int[N];
+    for (int i = 0; i < N; i++)
+    {
+        A[i] = sc.nextInt ();
+    }
+    
+    sc.close ();
+
+    //OUTPUT [uncomment & modify if required]
+    tomAndJerry(N,T,J,A);
+  }
+}

@@ -1,0 +1,54 @@
+import java.util.*; 
+import java.lang.*;
+import java.io.*;
+import java.lang.Math;
+
+public class Main {
+    public static int efficiency(int N, int X, int Y) {
+        int result = 0;
+        ArrayList<Integer> left = new ArrayList<Integer>();
+        ArrayList<Integer> right = new ArrayList<Integer>();
+        ArrayList<Integer> temp = new ArrayList<Integer>(N);
+        for(int i = 1; i <= N; i++){
+            temp.add(i);
+        }
+
+        //write your Logic here:
+        for(int i = 0; i < N; i++){
+
+            System.out.println("\nRow: " + i);
+            int count = 0;
+            for(int j = 0; j < N; j++){
+
+                if(j == temp.indexOf(X) && temp.indexOf(Y) > temp.indexOf(X)){
+                    j = temp.indexOf(Y);
+                }
+                System.out.print(j + " ");
+                count++;
+            }
+            
+            Collections.rotate(temp, -1);
+            result += count;
+        }
+        
+        return result;
+    }
+    public static void main(String[] args) {
+        // INPUT [uncomment & modify if required]
+        // 4 2 4 		18
+        // 30 26 2 		11067
+        // 30 11 9 		12563
+        // 30 19 3 		9707
+        // 30 20 25 	11390
+        // 30 12 4 		10523
+        
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int X = sc.nextInt();
+        int Y = sc.nextInt();
+        
+        // OUTPUT [uncomment & modify if required]
+        System.out.print(efficiency(N, X, Y));
+        sc.close();
+    }
+}

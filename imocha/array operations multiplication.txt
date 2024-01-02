@@ -1,0 +1,31 @@
+import java.util.*;
+ 
+public class Main
+{
+    public static int MinMaxMul(int n, int l, int r, int a[]) {
+        
+        //this is default OUTPUT. You can change it.
+        int result = 0;
+
+        //write your Logic here:
+        int[] temp = Arrays.copyOfRange(a, l-1, (l+r)-1);
+        Arrays.sort(temp);
+        return temp[0] * temp[temp.length-1];
+    }
+    public static void main (String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        
+        //INPUT [uncomment & modify if required]
+        int n = sc.nextInt();
+        int l = sc.nextInt();
+        int r = sc.nextInt();
+        int a[] = new int[n];
+        for(int i = 0; i < n; i++)
+        {
+            a[i] = sc.nextInt();
+        }
+        System.out.println(MinMaxMul(n, l, r, a));
+        sc.close();
+    }
+}

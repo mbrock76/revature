@@ -1,0 +1,59 @@
+import java.util.*;
+import java.io.*;
+import java.lang.Math;
+
+public class Main{
+    
+    public static void lastGladiatorStrength(int N,int[] A){
+        
+        //this is default OUTPUT. You can change it.
+        ArrayList<Integer> glads = new ArrayList<Integer>();
+        for(int each:A){
+            glads.add(each);
+        }
+    
+        //write your Logic here:
+        while(glads.size() > 1){
+    
+            Collections.sort(glads, Collections.reverseOrder());
+            
+            if(glads.get(0) == glads.get(1)){
+                glads.remove(0);
+                glads.remove(0);
+            }else{
+            
+                glads.set(0, glads.get(0) - glads.get(1));
+                glads.remove(1);
+            }
+        }
+    
+        if(glads.size() > 0){
+            System.out.println(glads.get(0));
+        }else{
+            System.out.println(0);
+        }
+    }
+    
+    public static void main (String[]args){
+        Scanner sc = new Scanner(System.in);
+        
+        // INPUT [uncomment & modify if required]
+        // 5 2 9 4 1 8                     0
+        // 6 659 72 786 93 216 388         24
+        // 5 796 626 334 480 479           163
+        // 5 196 226 34 180 379            103
+        // 5 96 26 34 48 47                7
+        // 5 2 2 2 2 2                     2
+        
+        int N = sc.nextInt();
+        int[] A = new int[N];
+        for (int i = 0; i < N; i++){
+            A[i] = sc.nextInt();
+        }
+        
+        
+        sc.close();
+        
+        lastGladiatorStrength(N,A);
+    }
+}

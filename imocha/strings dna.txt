@@ -1,0 +1,63 @@
+import java.util.*; 
+import java.lang.*;
+import java.io.*;
+import java.lang.Math;
+
+public class Main {
+    public static void longestSubarray(int N,String S) {
+        //this is default OUTPUT. You can change it.
+        int result= 0;
+        String last = "";
+        String[] temp = S.split("");
+        
+        HashMap<String, Integer> highest = new HashMap<String, Integer>();
+        highest.put("A", 0);
+        highest.put("C", 0);
+        highest.put("T", 0);
+        highest.put("G", 0);
+        
+        HashMap<String, Integer> streak = new HashMap<String, Integer>();
+        streak.put("A", 0);
+        streak.put("C", 0);
+        streak.put("T", 0);
+        streak.put("G", 0);
+        
+        //write your Logic here:
+        for(String each:temp){
+            
+            streak.put(each, streak.get(each) + 1);
+            
+            if(highest.get(each) < streak.get(each)){
+                highest.put(each, streak.get(each));
+            }
+            
+            if(!last.isEmpty() && !each.equals(last)){
+                streak.put(last, 0);
+            }
+            
+            last = each;
+        }
+                
+                
+        System.out.println(highest.get("A") + " " + highest.get("C") + " " + highest.get("T") + " " + highest.get("G"));
+    }
+    public static void main(String[] args) {
+        
+        //  INPUT                               OUTPUT
+        //  7 CCAAATA                           3 2 1 0
+        //  5 AACAT                             2 1 1 0
+        //  1 G                                 0 0 0 1
+        //  10 TCAACAAATC                       3 1 1 0
+        //  20 CCCCGCAAACACCTGGGGGC             3 4 1 5
+        //  30 CCCCGCTGTGGTTCCGTGAGACTATGTCGG   1 4 2 2
+        
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt(); 
+        String S = sc.next();
+        sc.close();
+
+        // OUTPUT [uncomment & modify if required]
+        longestSubarray(N,S);
+        
+    }
+}

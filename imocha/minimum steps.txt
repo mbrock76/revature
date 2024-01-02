@@ -1,0 +1,52 @@
+import java.util.*;
+import java.io.*;
+import java.lang.Math;
+
+public class Main
+{
+  public static int minimumSteps(String S)
+  {
+
+    //this is default OUTPUT. You can change it.
+    int result = 0;
+    String[] temp = S.split("");
+    //a = 97, z = 122, center = 110
+
+    //write your Logic here:
+    for(String each:temp){
+
+      if(each.hashCode() > 110){
+        result += 123 - each.hashCode();
+      }else{
+        result += each.hashCode() - 97;
+      }
+    }
+
+      return result;
+  }
+  public static void main (String[]args)
+  {
+    Scanner sc = new Scanner (System.in);
+
+    //INPUT [uncomment & modify if required]
+        // asbibidsddddhsb
+        // 65
+        // adhahhffhffffhhhskab
+        // 101
+        // qppqqqqqqb
+        // 93
+        // piowiperririrrrrrrrkkdksskkssasb
+        // 258
+        // passasasssiidoshcnkbbrorb
+        // 163
+        // irwpriprriofjfjsbnnjjawdqryyhb
+        // 217
+
+    String S = sc.next();
+    
+    sc.close ();
+
+    //OUTPUT [uncomment & modify if required]
+    System.out.print(minimumSteps(S));
+  }
+}

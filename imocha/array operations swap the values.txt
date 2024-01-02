@@ -1,0 +1,55 @@
+import java.lang.*;
+import java.io.*;
+import java.util.*;
+
+public class Main
+{   
+    public static int minSwap(int N,int K,int[] A){
+        //this is default OUTPUT. You can change it.
+        
+        int result= 0;
+        int temp = 0;
+        //write your Logic here:
+        while(true){
+            boolean did = false;
+
+            for(int i = 0; i < N; i++){
+
+                if(A[i] > K){
+                    
+                    temp = A[i];
+                    A[i] = K;
+                    K = temp;
+                    did = true;
+                }
+            }
+
+            if(did == true){
+                result++;
+                System.out.println(result);
+            }else{
+                break;
+            }
+        }
+        
+        
+        return result;
+    }
+    public static void main(String[] args)
+    {
+        // INPUT [uncomment & modify if required]
+        Scanner sc=new Scanner(System.in);
+
+        int N=sc.nextInt();
+        int K=sc.nextInt();
+
+        int[] A=new int[N];
+        for(int i=0;i<N;i++){
+            A[i]=sc.nextInt();
+        }
+
+        //OUTPUT [uncomment & modify if required]
+        System.out.println(minSwap(N,K,A));
+    
+    }
+}

@@ -1,0 +1,59 @@
+import java.util.*;
+import java.io.*;
+import java.lang.Math;
+
+public class Main
+{
+  public static String smallestString(int N, String S)
+  {
+
+    //this is default OUTPUT. You can change it.
+    String vowels = "aeiouAEIOU";
+    boolean swap = true;
+
+    //write your Logic here:
+    while(swap){
+      swap = false;
+      for(int i = 0; i < N-2; i++){
+        
+        if(Character.valueOf(S.charAt(i)).hashCode() > Character.valueOf(S.charAt(i+1)).hashCode()){
+          if((vowels.indexOf(S.charAt(i)) != -1 && vowels.indexOf(S.charAt(i+1)) == -1) || (vowels.indexOf(S.charAt(i)) == -1 && vowels.indexOf(S.charAt(i+1)) != -1)){
+            String[] temp = S.split("");
+            temp[i] = Character.toString(S.charAt(i+1));
+            temp[i+1] = Character.toString(S.charAt(i));
+            S = Arrays.toString(temp).replaceAll("[\\[\\], ]", "");
+            swap = true;
+          }
+        }
+      }
+    }
+      return S;
+  }
+
+  public static void main (String[]args)
+  {
+    Scanner sc = new Scanner (System.in);
+
+    //INPUT
+    // 4 aeci
+    // acei
+    // 1 a
+    // a
+    // 42 hqghumeaylnlfdxfircvscxggbwkfnqduxwfnfozvs
+    // hqghmueaiuoylnlfdxfrcvscxggbwkfnqdxwfnfzvs
+    // 34 tkjprepggxrpnrvystmwcysyycqpevikef
+    // eeietkjprpggxrpnrvystmwcysyycqpvkf
+    // 94 mznimkkasvwsrenzkycxfxtlsgypsfadpooefxzbcoejuvpvaboygpoeylfpbnpljvrvipyamyehwqnqrqpmxujjloovao
+    // iaeamooeoeuaooeiaeuooaoznmkksvwsrnzkycxfxtlsgypsfdpfxzbcjvpvbygpylfpbnpljvrvpymyhwqnqrqpmxjjlv
+    // 21 uxwhmsncbxcoksfzkvatx
+    // uoaxwhmsncbxcksfzkvtx
+    
+    int N = sc.nextInt ();
+    String S = sc.next();
+    
+    sc.close ();
+
+    //OUTPUT [uncomment & modify if required]
+    System.out.print(smallestString(N,S));
+  }
+}

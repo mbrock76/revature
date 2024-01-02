@@ -1,0 +1,55 @@
+import java.util.*;
+import java.io.*;
+import java.lang.Math;
+
+public class Main{
+    public static int medicineOfPatients(int N,int[] med){
+        //this is default OUTPUT. You can change it.
+        int result = 0;
+        int singles = 0;
+        int doubles = 0;
+
+        //write your Logic here:
+        for(int i = 0; i < N; i++){
+
+            int temp = med[i];
+            int tempDubs = 0;
+
+            while(temp != 0){
+
+                if(temp % 2 != 0){
+                    
+                    singles++;
+                    temp--;
+                }else{
+                    
+                    tempDubs++;
+                    temp = temp/2;
+                }
+            }
+
+            if(tempDubs > doubles){
+                doubles = tempDubs;
+            }            
+        }
+
+        result = singles + doubles;
+        return result;
+    }
+
+    public static void main (String[]args){
+        Scanner sc = new Scanner(System.in);
+
+        // INPUT [uncomment & modify if required]
+		int N = sc.nextInt();
+		int[] med = new int[N];
+		for (int i = 0; i < N; i++){
+		med[i] = sc.nextInt();
+		}
+		
+
+        sc.close();
+
+        System.out.print(medicineOfPatients(N,med));
+    }
+}

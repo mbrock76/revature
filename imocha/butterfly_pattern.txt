@@ -1,0 +1,31 @@
+import java.util.*;
+
+public class Main{
+    
+    public static void printAsterisks(int n){
+    
+        String asterisks = "*".repeat(n);
+        String spaces = " ".repeat(n);
+        boolean flag = true;
+        
+        for(int i = 1; i > 0; i = (flag) ? i + 1 : i - 1){
+        
+            System.out.print(asterisks.substring(0,i));
+            System.out.print(spaces.substring(i));
+            System.out.print(spaces.substring(i));
+            System.out.println(asterisks.substring(0,i));
+            
+            if(i == n){ flag = false; }
+        }
+    }
+    
+    public static void main(String[] args) {
+    
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter the number of asterisks: ");
+        int temp = input.nextInt();
+        
+        printAsterisks(temp);
+    }
+}

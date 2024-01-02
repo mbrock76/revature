@@ -1,0 +1,102 @@
+import java.util.*;
+import java.io.*;
+import java.lang.Math;
+
+public class Main{
+    
+    public static void householdIncome(int N, int[] A, int[] B){
+
+        //this is default OUTPUT. You can change it.
+        int[][] arr = new int[4][N];
+        arr[0] = A;
+        arr[1] = B;
+        for(int i = 0; i < N; i++){
+            arr[2][i] = A[i] + B[i];
+            arr[3][i] = i;
+        }
+        
+        
+        //sort by total:
+        for (int i = 0; i < N; i++){  
+            
+            for (int j = i + 1; j < N; j++){
+                
+                int tmp = 0;  
+                if (arr[2][i] > arr[2][j]){
+                    
+                    arr = shiftCol(i,j,arr);
+                    
+                }else if(arr[2][i] == arr[2][j]){
+                    
+                    if(arr[1][i] < arr[1][j]){
+                        
+                        arr = shiftCol(i,j,arr);
+                        
+                    }else if(arr[1][i] == arr[1][j]){
+                        
+                        if(arr[3][i] > arr[3][j]){
+                            
+                            arr = shiftCol(i,j,arr);
+                        }
+                    }
+                }
+            }
+        }
+    
+        
+        // System.out.println(Arrays.toString(arr[0]));
+        // System.out.println(Arrays.toString(arr[1]));
+        
+        for(int i = 0; i < N; i++){
+            
+            System.out.print(arr[2][i] + " " + arr[3][i] + " ");
+        }
+    }
+  
+    public static int[][] shiftCol(int i, int j, int arr[][]){
+      
+        int tmp = 0;
+        tmp = arr[0][j];  
+        arr[0][j] = arr[0][i];  
+        arr[0][i] = tmp;
+        
+        tmp = arr[1][j];  
+        arr[1][j] = arr[1][i];  
+        arr[1][i] = tmp;
+        
+        tmp = arr[2][j];  
+        arr[2][j] = arr[2][i];  
+        arr[2][i] = tmp;
+        
+        tmp = arr[3][j];  
+        arr[3][j] = arr[3][i];  
+        arr[3][i] = tmp;
+        
+        return arr;
+    }   
+  
+    public static void main (String[]args){
+      
+        Scanner sc = new Scanner (System.in);
+    
+        //INPUT *see txt file*
+        int N = sc.nextInt ();
+    
+        int[] A = new int[N];
+        for (int i = 0; i < N; i++)
+        {
+            A[i] = sc.nextInt ();
+        }
+        
+        int[] B = new int[N];
+        for (int i = 0; i < N; i++)
+        {
+            B[i] = sc.nextInt ();
+        }
+        
+        sc.close ();
+    
+        //OUTPUT [uncomment & modify if required]
+        householdIncome(N,A,B);
+    }
+}

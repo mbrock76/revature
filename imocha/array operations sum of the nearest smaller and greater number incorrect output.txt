@@ -1,0 +1,96 @@
+import java.util.*; 
+import java.lang.*;
+import java.io.*;
+import java.lang.Math;
+
+public class Main {
+    public static void sumNum(int N, int A[]) {
+
+        //this is default OUTPUT. You can change it.
+        boolean foundSmaller = false;
+        boolean foundLarger = false;
+        int d, tempSmaller, tempLarger;
+
+        //write your Logic here:
+        for(int i = 0; i < N; i++){
+
+            foundLarger = false;
+            foundSmaller = false;
+            tempSmaller = A[i];
+            tempLarger = A[i];
+            
+            d = 1;
+            while(!foundSmaller && d < N){
+
+                if(i - d >= 0  && A[i-d] > tempSmaller){
+                    
+                    foundSmaller = true;
+                    tempSmaller = A[i-d];
+                }
+                
+                if(i + d < N && A[i+d] > tempSmaller){
+                    
+                    foundSmaller = true;
+                    tempSmaller = A[i+d];
+                }
+                
+                d++;
+            }
+            
+            d = 1;
+            while(!foundLarger && d < N){
+
+                if(i - d >= 0  && A[i-d] < tempLarger){
+                    
+                    foundLarger = true;
+                    tempLarger = A[i-d];
+                }
+                
+                if(i + d < N && A[i+d] < tempLarger){
+                    
+                    foundLarger = true;
+                    tempLarger = A[i+d];
+                }
+                
+                d++;
+            }
+            
+
+            System.out.print((((foundSmaller)?tempSmaller:0) + ((foundLarger)?tempLarger:0)) + " ");
+        }
+        
+    }
+    public static void main(String[] args) {
+
+        // INPUT [uncomment & modify if required]
+        // 5 1 5 2 3 8	
+        // 2 11 4 7 5
+        
+        // 10 33 67 23 64 18 68 96 40 40 53
+        // 63 132 51 120 23 163 68 86 86 104
+        
+        // 20 66 92 15 60 41 34 31 27 11 27 53 65 96 71 54 100 5 80 89 6
+        // 136 185 38 119 87 72 61 46 21 46 95 126 192 146 113 96 6 160 172 16
+        
+        // 30 73 60 54 78 54 53 72 43 16 68 3 40 66 25 96 51 48 56 33 58 31 95 37 90 32 58 32 56 24 99
+        // 150 124 109 163 109 105 141 88 27 138 16 80 128 55 194 101 94 112 69 116 57 186 73 173 64 116 64 112 41 96
+        
+        // 50 87 99 19 74 47 77 92 40 99 59 74 20 31 2 16 38 55 60 31 96 81 1 29 8 91 87 38 75 77 18 32 50 69 8 52 53 58 29 49 98 15 16 12 23 79 54 100 91 62 70
+        // 172 198 38 145 89 154 187 85 198 118 145 42 61 9 33 72 112 121 61 190 166 2 54 14 179 172 72 151 154 35 69 101 132 14 103 106 114 54 97 195 28 33 23 49 158 108 99 179 129 143
+        
+        // 50 50 247 233 480 94 23 427 98 450 441 433 161 288 325 301 319 365 430 463 385 209 491 317 35 86 52 26 475 58 185 163 494 241 266 330 224 475 226 110 95 269 421 207 267 317 251 257 236 450 109
+        // 87 492 462 966 181 26 851 204 904 883 871 273 570 649 605 642 715 860 925 786 431 974 620 76 152 108 58 943 138 370 346 491 483 524 690 435 943 457 270 192 555 812 394 535 620 504 517 474 904 208
+                
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        
+        int A [] = new int[N];
+        for(int i=0; i<N; i++) {
+            A[i] = sc.nextInt();
+        }
+        
+        // OUTPUT [uncomment & modify if required]
+        sumNum(N,A);
+        sc.close();
+    }
+}

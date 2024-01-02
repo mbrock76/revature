@@ -1,0 +1,54 @@
+import java.util.*;
+import java.io.*;
+import java.lang.Math;
+
+public class Main
+{
+  public static int countPairs(int N,int[] A)
+  {
+
+    //this is default OUTPUT. You can change it.
+    int result = N-1;
+
+    //write your Logic here:
+    for(int i = 2; i < N; i++){
+
+      for(int j = 0; j+i < N; j++){
+
+        boolean flag = true;
+        for(int k = j+1; k < j+i; k++){
+
+          int[] temp = {A[j], A[j+i]};
+          Arrays.sort(temp);
+          if(A[k] >= temp[0]){
+            flag = false;
+          }
+        }
+
+        if(flag){
+          result++;
+        }
+      }
+    }
+
+    return result;
+  }
+  public static void main (String[]args)
+  {
+    Scanner sc = new Scanner (System.in);
+
+    //INPUT [uncomment & modify if required]
+    int N = sc.nextInt ();
+
+    int[] A = new int[N];
+    for (int i = 0; i < N; i++)
+    {
+        A[i] = sc.nextInt ();
+    }
+    
+    sc.close ();
+
+    //OUTPUT [uncomment & modify if required]
+    System.out.print(countPairs(N,A));
+  }
+}

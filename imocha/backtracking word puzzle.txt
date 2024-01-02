@@ -1,0 +1,93 @@
+import java.util.*;
+import java.io.*;
+import java.lang.Math;
+
+public class Main{
+
+    public static boolean[][] vis;
+    public static Stack<Integer> x = new Stack<Integer>();
+    public static Stack<Integer> y = new Stack<Integer>();
+    public static boolean found = false;
+    public static char[][] alpha;
+    public static int N;
+    
+    public static void dfs(int myIndex, char[] myWord){
+
+        for(int i = -1; i < 2; i++){
+            for(int j = -1; j<2; j++){
+
+                if(i == 0 && j == 0){
+                    continue;
+                }
+
+                if(x.peek() + i >= 0 && x.peek() + i < N && y.peek() + j >= 0 && y.peek() + j < N && !found){
+
+                    if(myWord[myIndex] == alpha[y.peek() + j][x.peek() + i]){
+
+                        if(myIndex == myWord.length - 1){
+                            found = true;
+                        }else{
+                            myIndex++;
+                            x.push(x.peek() + i);
+                            y.push(y.peek() + j);
+                            dfs(myIndex, myWord);
+                        }
+                    }
+                }
+            }
+        }
+        x.pop();
+        y.pop();
+    }
+
+    public static void clearVisited(){
+
+        for(int i = 0; i < N; i++){
+            for(int j = 0; j < N; j++){
+                vis[i][j] = false;
+            }
+        }
+    }
+
+    public static void main (String[]args){
+        Scanner sc = new Scanner(System.in);
+
+        // INPUT [uncomment & modify if required]
+		N = sc.nextInt();
+		int M = sc.nextInt();
+		alpha = new char[N][N];
+        vis = new boolean[N][N];
+
+	for(int i=0; i<N; i++){
+		for(int j=0; j<N; j++){
+			alpha[i][j]=sc.next().charAt(0);
+			}
+		}
+	String[] words = new String[M];
+		for (int i = 0; i < M; i++){
+			words[i] = sc.next();
+		}
+		
+
+        sc.close();
+
+        int result = 0;
+        clearVisited();
+
+        for(int i = 0; i < M; i++){
+
+            char[] temp = words[i].toCharArray();
+            found = false;
+            x.clear();
+            y.clear();
+            x.push(0);
+            y.push(0);
+            dfs(0, temp);
+
+            if(found){
+                result++;
+            }
+        }
+        System.out.println(result);
+    }
+}

@@ -1,0 +1,44 @@
+import java.util.*;
+import java.util.stream.IntStream;
+import java.util.stream.Collectors;
+
+public class Main {
+
+    public static void printPattern(int length) {
+        
+        int i = length;
+        boolean flag = false;
+        StringBuilder nums = new StringBuilder(length * 2);
+
+        for(int j = 1; j <= length; j++){
+            nums.append(j);
+        }
+
+        while(i <= length){
+            
+            System.out.println(nums);
+
+            if(flag){
+                
+                i++;
+                nums.append(i);
+                
+            }else{
+                
+                nums.delete(nums.lastIndexOf(String.valueOf(i)), nums.length());
+                i--;
+            }
+
+            if(i == 1){ flag = true; }
+        }
+    }
+
+    public static void main(String[] args) {
+        
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your number: ");
+        int input = scanner.nextInt();
+
+        printPattern(input);
+    }
+}

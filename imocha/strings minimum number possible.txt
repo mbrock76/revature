@@ -1,0 +1,67 @@
+import java.lang.*;
+import java.io.*;
+import java.util.*;
+
+public class Main
+{   
+    public static String smallestNumber(String S){
+        
+        //this is default OUTPUT. You can change it.
+        String result = "";
+        String[] temp = S.split("");
+
+        //write your Logic here:
+        for(int i = 0; i < temp.length; i++){
+
+            if(temp[i].equals("?")){
+
+                if(i == 0){
+                    if(!temp[i+1].equals("1")){
+                        temp[i] = "1";
+                    }else{
+                        temp[i] = "2";
+                    }
+                }else if(i == temp.length-1){
+                    if(!temp[i-1].equals("1")){
+                        temp[i] = "1";
+                    }else{
+                        temp[i] = "2";
+                    }
+                }else{
+                    Integer sum = 0;
+
+                    if(temp[i+1].equals("?")){
+                        sum
+                    }
+                    Integer sum = Integer.parseInt(temp[i-1])+Integer.parseInt(temp[i+1]);
+                    if(sum == 2){
+                        temp[i] = "2";
+                    }else if(sum == 3){
+                        temp[i] = "3";
+                    }else if(sum == 4){
+                        if(temp[i-1].equals("2") || temp[i+1].equals("2")){
+                            temp[i] = "1";
+                        }else{
+                            temp[i] = "2";
+                        }
+                    }else{
+                        temp[i] = "1";
+                    }
+                }
+            }
+        }
+        result = String.join("", temp);
+        
+        return result;
+    }
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+
+        String S=sc.nextLine();
+        
+        //OUTPUT [uncomment & modify if required]
+        System.out.println(smallestNumber(S));
+    
+    }
+}

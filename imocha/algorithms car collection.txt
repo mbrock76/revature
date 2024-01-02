@@ -1,0 +1,62 @@
+import java.util.*;
+import java.io.*;
+import java.lang.Math;
+
+public class Main{
+
+    public static String carCollection(int N,int[] X,int K,int[] M){
+
+        String numShowrooms = "";
+        int numCars = 0;
+
+        for(int each:M){
+
+            numCars = 0;
+            for(int j = 0; j < N; j++){
+
+                if(X[j] <= each){
+
+                    numCars++;
+                }
+            }
+
+            numShowrooms += " " + numCars;
+        }
+
+        return numShowrooms;
+    }
+
+    public static void main (String[]args){
+
+        Scanner sc = new Scanner(System.in);
+
+
+        // INPUT [uncomment & modify if required]
+
+        int N = sc.nextInt();
+        int[] X = new int[N];
+
+        for (int i = 0; i < N; i++){
+
+        	X[i] = sc.nextInt();
+
+        }
+
+        int K = sc.nextInt();
+        int[] M = new int[K];
+
+        for (int i = 0; i < K; i++){
+
+        	M[i] = sc.nextInt();
+
+        }
+
+        
+        sc.close();
+
+
+        System.out.print(carCollection(N,X,K,M));
+
+    }
+
+}

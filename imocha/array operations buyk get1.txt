@@ -1,0 +1,57 @@
+import java.util.*;
+import java.util.stream.Collector;
+import java.io.*;
+import java.lang.Math;
+ 
+public class Main
+{
+    public static int BKG1(int N, int K, int[] A) {
+        
+        //this is default OUTPUT. You can change it.
+        int result = 0;
+        Arrays.sort(A);
+        Integer[] temp = Arrays.stream(A).boxed().toArray(Integer[]::new);
+        Arrays.sort(temp, Collections.reverseOrder());
+
+        //write your Logic here:
+        for(int i = 0, j = 0; i < N; i++){
+            
+            if(j == K){
+                i++;
+                j = 0;
+            }
+            
+            if(i < N){
+                result += temp[i];
+                j++;
+            }
+        }
+
+        return result;
+    }
+    public static void main (String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+            
+        //INPUT [uncomment & modify if required]
+        // 5 2 2 9 6 5 2                                                       19
+        // 4 3 23874 2375 923754 33345                                         980973
+        // 3 1 3939494 243523 409903                                           4183017
+        // 10 5 0 0 0 0 0 0 0 0 0 0                                             0
+        // 9 4 34 27 42375 902375 29475 34 2 414 0                             974702
+        // 11 3 3434 45 3425 24 524562 45 425 90378940 234 235 9900            90917601
+        
+        int N = sc.nextInt();
+        int K = sc.nextInt();
+        int[] A = new int[N];
+
+        for(int i=0;i<N;i++){
+            A[i]=sc.nextInt();
+        }
+
+        sc.close();
+
+        //OUTPUT [uncomment & modify if required]
+        System.out.print(BKG1(N, K, A));
+    }
+}

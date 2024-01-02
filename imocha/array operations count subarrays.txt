@@ -1,0 +1,59 @@
+import java.util.*;
+import java.io.*;
+import java.lang.Math;
+
+public class Main
+{
+  public static int countSubarray(int N,int K,int[]A)
+  {
+
+    //this is default OUTPUT. You can change it.
+    int result = 0;
+
+    //write your Logic here:
+    for(int i = 1; i <= N; i++){
+      for(int j = 0; j < N-i; j++){
+
+        int[] temp = Arrays.copyOfRange(A, j, j+i+1);
+        if(K == Arrays.stream(temp).sum()){
+
+          result++;
+        }
+      }
+    }
+
+      return result;
+  }
+  public static void main (String[]args)
+  {
+    Scanner sc = new Scanner (System.in);
+
+    //INPUT [uncomment & modify if required]
+        // 5 10 5 5 4 1 9
+        // 3
+        // 5 10 5 5 5 5 5
+        // 4
+        // 10 11 1 1 1 1 1 1 1 1 1 1
+        // 0
+        // 15 15 1 5 3 4 2 6 4 2 3 7 3 4 5 7 6
+        // 4
+        // 4 40000 10000 10000 10000 10000
+        // 1
+        // 25 3500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500 500
+        // 19
+
+    int N = sc.nextInt ();
+    int K = sc.nextInt ();
+    
+    int[] A = new int[N];
+    for (int i = 0; i < N; i++)
+    {
+        A[i] = sc.nextInt ();
+    }
+    
+    sc.close ();
+
+    //OUTPUT [uncomment & modify if required]
+    System.out.print(countSubarray(N,K,A));
+  }
+}

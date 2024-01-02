@@ -1,0 +1,43 @@
+import java.util.*;
+import java.io.*;
+import java.lang.Math;
+
+public class Main{
+    public static void cubeSquare(int T,int[] N){
+        //this is default OUTPUT. You can change it.
+        int result = 0;
+
+        //write your Logic here:
+        for(int each: N){
+            result = 1;
+
+            for(int i = 2; i*i <= each; i++){
+                if((i * i) <= each){
+                    result++;
+                }
+                if((i * i * i) <= each){
+                    result++;
+                }
+            }
+
+            System.out.println(result);
+
+        }
+    }
+
+    public static void main (String[]args){
+        Scanner sc = new Scanner(System.in);
+
+        // INPUT [uncomment & modify if required]
+		int T = sc.nextInt();
+		int[] N = new int[T];
+		for (int i = 0; i < T; i++){
+		N[i] = sc.nextInt();
+		}
+		
+
+        sc.close();
+
+        cubeSquare(T,N);
+    }
+}

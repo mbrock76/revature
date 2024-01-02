@@ -1,0 +1,70 @@
+import java.util.*;
+import java.io.*;
+import java.lang.Math;
+
+public class Main{
+    
+    public static int primeOrPerfectSquareDivisors(int N){
+    
+        //this is default OUTPUT. You can change it.
+        int result = 0;
+        int primes = 0;
+        int squares = 0;
+        ArrayList<Integer> divisors = new ArrayList<Integer>();
+        ArrayList<Integer> primeDivisors = new ArrayList<Integer>();
+        
+        //write your Logic here:
+        for(int i = 1; i <= N; i++){
+        
+            if(N % i == 0){
+            
+            divisors.add(i);
+            }
+        }
+        
+        for(int i = 1; i < divisors.size(); i++){
+                
+            boolean isprime = true;
+            for(int j = 2; j < divisors.get(i); j++){
+                
+                if(divisors.get(i) % j == 0){
+                    isprime = false;
+                }
+            }
+            
+            if(isprime){
+                primeDivisors.add(divisors.get(i));
+                primes++;
+            }
+        }
+        
+        for(int i = 0; i < divisors.size(); i++){
+            
+            double sqrt = Math.sqrt(divisors.get(i));
+            int temp = (int)sqrt;
+            
+            if(temp == sqrt){
+                squares++;
+            }
+        }
+        
+        // System.out.println("Divs:\t" + divisors);
+        // System.out.println("Primes:\t" + primeDivisors);
+        // System.out.println(primes + "\t" + squares);
+        result = primes * squares;
+        
+        return result;
+    }
+    
+    public static void main (String[]args){
+    Scanner sc = new Scanner (System.in);
+    
+    //INPUT [uncomment & modify if required]
+    int N = sc.nextInt ();
+    
+    sc.close ();
+    // int N = 100000;
+    //OUTPUT [uncomment & modify if required]
+    System.out.print(primeOrPerfectSquareDivisors(N));
+    }
+}

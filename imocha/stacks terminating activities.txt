@@ -1,0 +1,72 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+import java.lang.Math;
+ 
+public class Main
+{
+    public static int terminatingActivities(int N,int M, ArrayList<Integer> A, ArrayList<Integer> B){
+       
+        //this is default OUTPUT. You can change it.
+        int result = 0;
+        
+        //write your Logic here:
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        for(int i = 0; i < M; i++){
+            
+            ArrayList<Integer> left = new ArrayList<Integer>();
+            left.addAll(A.subList(0,A.indexOf(B.get(i))));
+            A.remove(B.get(i));
+            
+            int sortLeftCount = 0;
+            for(int j = M-1; j > i; j--){
+                
+                if(left.contains(B.get(j))){
+                    
+                    sortLeftCount++;
+                    A.remove(B.get(j));
+                    A.add(0,B.get(j));
+                }
+            }
+            
+            result += 2 * sortLeftCount + 1;
+            System.out.println(A);
+        }
+        return result;
+    }
+
+    public static void main (String[] args)
+    {
+        // Scanner sc=new Scanner(System.in);
+        // INPUT [uncomment & modify if required]
+        // int N=sc.nextInt();
+        // int M=sc.nextInt();
+        // ArrayList<Integer> A = new ArrayList<Integer>(N);
+        // ArrayList<Integer> B = new ArrayList<Integer>(M);
+        // for(int i=0;i<N;i++){
+        //     A.add(sc.nextInt());
+        // }
+        // for(int i=0;i<M;i++){
+        //     B.add(sc.nextInt());
+        // }
+        // sc.close();
+        
+        //for online-java
+        System.out.println(args.length);
+        int N=Integer.parseInt(args[0]);
+        int M=Integer.parseInt(args[1]);
+        ArrayList<Integer> A = new ArrayList<Integer>(N);
+        ArrayList<Integer> B = new ArrayList<Integer>(M);
+        for(int i=2;i<args.length;i++){
+            if(i<N+2){
+                A.add(Integer.parseInt(args[i]));
+            }else{
+                B.add(Integer.parseInt(args[i]));
+            }
+        }
+
+
+        //OUTPUT [uncomment & modify if required]
+        System.out.println(terminatingActivities(N,M,A,B));
+    }
+}
